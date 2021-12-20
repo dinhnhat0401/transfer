@@ -39,7 +39,7 @@ export default class GithubUtil implements Source {
       owner: process.env.GITHUB_REPO_OWNER,
       repo: process.env.GITHUB_REPO,
       issue_number: issue.number,
-      body: issueComment["description"] ?? "issue title placeholder",
+      body: issueComment.body ?? "issue title placeholder",
     };
 
     return this.octokit.issues.createComment(props);

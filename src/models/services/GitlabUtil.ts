@@ -26,7 +26,7 @@ export default class GitlabUtil implements Source {
   /// get all comment belong to one issue
   async getIssueComments(issueID: number): Promise<string> {
     const response = await fetch(
-      `${process.env.GITLAB_API_ENDPOINT}/projects/${process.env.GITLAB_PROJECT_ID}/issues/${issueID}/discussions`,
+      `${process.env.GITLAB_API_ENDPOINT}/projects/${process.env.GITLAB_PROJECT_ID}/issues/${issueID}/notes`,
       {
         method: "GET",
         headers: {

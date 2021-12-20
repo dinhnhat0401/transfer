@@ -14,27 +14,36 @@ export const sleep = (milliseconds: number) => {
 
 export default class API {
   /// issue source
-  from: Source;
-  /// move to this
-  to: Source;
+  input: Source;
+  /// move output this
+  output: Source;
 
-  constructor(from: Source, to: Source) {
-    this.from = from
-    this.to = to
+  constructor(input: Source, output: Source) {
+    this.input = input
+    this.output = output
   }
 
   async cloneIssue() {
-    const rawIssueData = await this.from.getIssues()
+    const rawIssueData = await this.input.getIssues()
     // console.log(res);
     let issues: [Issue] = JSON.parse(rawIssueData);
-    console.log(issues.length);
-    console.log(issues[0]);
-    const rawCommentData = await this.from.getIssueComments(issues[0]["iid"]);
-    console.log("raw="+rawCommentData);
-    let comments: [IssueComment] = JSON.parse(rawCommentData);
-    let newIssue = await this.to.createIssue(issues[0]);
-    console.log(newIssue);
-    await this.to.createIssueComment(comments[0], newIssue);
+    issues.flatMap(async (issue) => {
+      /// create a new issue at output source
+      let newIssue = await this.output.createIssue(issue);
+
+      /// load comment from input source
+      const rawCommentData = await this.input.getIssueComments(issue["iid"]);
+      let comments: [IssueComment] = JSON.parse(rawCommentData);
+
+      /// create new comments at newly created issue
+      comments
+        .filter((comment) => {
+          return comment["system"] === undefined || comment["system"] === false;
+        })
+        .flatMap(async (comment) => {
+          await this.output.createIssueComment(comment, newIssue);
+        });
+    });
   }
 }
 
