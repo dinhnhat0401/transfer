@@ -26,7 +26,7 @@ Change to the TypeScript directory:
 cd transfer
 ```
 
-Install [Gulp](https://gulpjs.com/) tools and dev dependencies:
+Install dependencies:
 
 ```bash
 npm install
