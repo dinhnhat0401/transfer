@@ -1,7 +1,7 @@
 
 # Transfer
 
-Transfer is a lightweight package for transfering data resources (issues, issues comments, ...) between various sources. 
+A lightweight package for transferring data between various sources.
 
 ## Requirement
 
