@@ -10,9 +10,9 @@ export default interface Source {
   /// create a new issue to source
   createIssue(issue: Issue): any
 
-  /// get all comment belong to one issue
+  /// get all comment belong to issueID
   getIssueComments(issueID: number): Promise<string>
 
-  /// create new comments on a issue
+  /// create new comment on an issue
   createIssueComment(issueComment: IssueComment, issue: Issue): any
 }
