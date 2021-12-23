@@ -32,6 +32,32 @@ Install dependencies:
 npm install
 ```
 
+Setup enviroment variables:
+
+```bash
+Create a new .env file with below variables.
+
+# Gitlab private token, created at https://gitlab.com/-/profile/personal_access_tokens
+GITLAB_PRIVATE_TOKEN=xxxx-yyyyyyyy
+
+# Gitlab API endpoint
+GITLAB_API_ENDPOINT=https://abc.def
+
+# Gitlab project info
+GITLAB_PROJECT_ID=123456
+
+# Github personal access token, created at https://github.com/settings/tokens
+GITHUB_PERSONAL_ACCESS_TOKEN=xxx_yyyyyy
+
+# Github project info
+GITHUB_API_ENDPOINT=https://api.github.com
+
+# Github project owner
+GITHUB_REPO_OWNER=whoami
+
+# Github repo where issue will be transfered to
+GITHUB_REPO=myreponame
+```
 
 ## Usage
 
